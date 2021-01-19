@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 import ProductList from './components/ProductList.vue'
 export default {
-  components: { HelloWorld, ProductList },
+  components: { ProductList },
   name: 'app'
 }
 </script>

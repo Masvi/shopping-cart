@@ -8,6 +8,7 @@
         :key="product.id"
       >
         {{ product.title }} - {{ product.price }}
+        <button @click="addProductToCart(product)">Add to cart</button>
       </li>
     </ul>
   </div>
@@ -32,6 +33,11 @@ export default {
       .then(() => {
         this.loading = false
       })
+  },
+  methods: {
+    addProductToCart (product) {
+      this.$store.dispatch('addProductToCart', product)
+    }
   }
 }
 </script>

@@ -19,7 +19,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
   state: { // = data
-    products: []
+    products: [],
+    cart: []
   },
 
   /**
@@ -53,7 +54,6 @@ export default new Vuex.Store({
    * Ex: when a user adds a product to the cart we would call an action
    */
   actions: { // = methods
-
     fetchProducts ({ commit }) {
       return new Promise((resolve, reject) => {
         shop.getProducts(products => {
@@ -63,11 +63,18 @@ export default new Vuex.Store({
       })
     },
 
-    addToCart ({ commit }, product) {
+    addProductToCart (context, product) {
       if (product.inventory > 0) {
-        commit('pushProductToCart', product)
-      } else {
-        // show out of stock message
+        const cartItem = context.state.cart.find(item => item.id === product.id)
+
+        // adds to cart or increment the quantaity of the item on the cart
+        if (!cartItem) {
+          context.commit('pushProductToCart', product.id)
+        } else {
+          context.commit('incrementItemQuantity', cartItem)
+        }
+        // remove one item of the inventory
+        context.commit('decrementProductInventory', product)
       }
     }
   },
@@ -86,6 +93,18 @@ export default new Vuex.Store({
   mutations: {
     setProducts (state, products) {
       state.products = products
+    },
+    pushProductToCart (state, productId) {
+      state.cart.push({
+        id: productId,
+        quantity: 1
+      })
+    },
+    incrementItemQuantity (state, cartItem) {
+      cartItem.quantity++
+    },
+    decrementProductInventory (state, product) {
+      product.inventory--
     }
   }
 })
