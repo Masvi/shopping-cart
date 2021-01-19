@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div>
     <h1>Product List</h1>
     <h3 v-if="loading">carregando...</h3>
@@ -15,9 +15,6 @@
 
 <script>
 
-import shop from '@/api/shop'
-import store from '@/store/index'
-
 export default {
   data() {
     return {
@@ -26,12 +23,12 @@ export default {
   },
   computed: {
     products() {
-      return store.getters.availableProducts
+      return this.$store.getters.availableProducts
     }
   },
   created() {
     this.loading = true
-    store.dispatch('fetchProducts')
+    this.$store.dispatch('fetchProducts')
       .then(() => {
         this.loading = false
       })
