@@ -7,7 +7,7 @@
         v-for="product in products"
         :key="product.id"
       >
-        {{ product.title }} - {{ product.price }}
+        {{ product.title }} - {{ product.price | currency }}
         <button @click="addProductToCart(product)">Add to cart</button>
       </li>
     </ul>
