@@ -1,7 +1,7 @@
 /**
  * VUEX
  *
- * is a state management library for vue applications. It servers
+ * is a state management pattern library for vue applications. It servers
  * as a centralized data store for all components in an application
  * in addition (além disso), it enforces rules to ensure that we interact
  * with the state in a predictable fashion
