@@ -9,7 +9,11 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import shop from '@/api/shop'
+
+import actions from './actions'
+
+import cart from './modules/cart'
+import product from './modules/product'
 
 Vue.use(Vuex)
 
@@ -18,10 +22,13 @@ Vue.use(Vuex)
 */
 export default new Vuex.Store({
 
+  modules: {
+    cart,
+    product
+  },
+
   state: { // = data
-    products: [],
-    cart: [],
-    checkoutStatus: null
+    products: []
   },
 
   /**
@@ -34,84 +41,14 @@ export default new Vuex.Store({
    * Or calculate the shopping cart total
    */
   getters: { // = computed properties
-    availableProducts(state, getters) {
-      return state.products.filter(product => product.inventory > 0)
-    },
-    cartProducts (state) {
-      return state.cart.map(cartItem => {
 
-        const product = state.products.find(product => product.id === cartItem.id)
-
-        return {
-          title: product.title,
-          price: product.price,
-          quantity: cartItem.quantity
-        }
-      })
-    },
-    cartTotal (state, getters) {
-      return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
-    },
-    productIsInStock () {
-      return (product) => {
-        return product.inventory > 0
-      }
-    }
   },
 
   /**
    * Actions
-   *
-   * When we need to fech some data from an api we would create an action for it.
-   * Vuex automatically passes the - CONTEXT object - as the first parameter to all actions
-   * The context object exposes the same set of methods and properties as the store object
-   *
-   * This means that we can use :
-   *  -> context.commit to commit an mutation
-   *  -> context.state to access the state, and so on (assim por diante)
-   *
-   * Actions are also responsible for the logic of when mutations shold be fired (disparada)
-   *
-   * Ex: when a user adds a product to the cart we would call an action
    */
-  actions: { // = methods
-    fetchProducts ({ commit }) {
-      return new Promise((resolve, reject) => {
-        shop.getProducts(products => {
-          commit('setProducts', products)
-          resolve()
-        })
-      })
-    },
+  actions,
 
-    addProductToCart ({state, getters, commit}, product) {
-      if (getters.productIsInStock(product)) {
-        const cartItem = state.cart.find(item => item.id === product.id)
-
-        // adds to cart or increment the quantaity of the item on the cart
-        if (!cartItem) {
-          commit('pushProductToCart', product.id)
-        } else {
-          commit('incrementItemQuantity', cartItem)
-        }
-        // remove one item of the inventory
-        commit('decrementProductInventory', product)
-      }
-    },
-
-    checkout ({ state, commit }) {
-      shop.buyProducts(
-        state.cart,
-          () => {
-            commit('emptyCart')
-            commit('setCheckoutStatus', 'success')
-          },
-          () => {
-            commit('setCheckoutStatus', 'failed')
-          }
-      )
-    }
-  },
 
   /**
    * MUTATIONS
@@ -125,26 +62,6 @@ export default new Vuex.Store({
    * bugs in your code
    */
   mutations: {
-    setProducts (state, products) {
-      state.products = products
-    },
-    pushProductToCart (state, productId) {
-      state.cart.push({
-        id: productId,
-        quantity: 1
-      })
-    },
-    incrementItemQuantity (state, cartItem) {
-      cartItem.quantity++
-    },
-    decrementProductInventory (state, product) {
-      product.inventory--
-    },
-    setCheckoutStatus (state, status) {
-      state.checkoutStatus = status
-    },
-    emptyCart (state) {
-      state.cart = []
-    }
-  }
+
+  },
 })
