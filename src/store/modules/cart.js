@@ -1,10 +1,13 @@
+import shop from '../../api/shop'
+
 export default {
+  namespaced: true,
   state: {
     cart: [],
     checkoutStatus: null
   },
   getters: {
-    cartProducts (state, getters, rootState) {
+    cartProducts (state, getters, rootState, rootGetters) {
       return state.cart.map(cartItem => {
 
         const product = rootState.product.items.find(product => product.id === cartItem.id)
@@ -32,11 +35,15 @@ export default {
     },
     emptyCart (state) {
       state.cart = []
-    }
+    },
+    setCheckoutStatus (state, status) {
+      state.checkoutStatus = status
+    },
   },
   actions: {
-    addProductToCart ({state, getters, commit, rootState}, product) {
-      if (getters.productIsInStock(product)) {
+    addProductToCart ({state, getters, commit, rootState, rootGetters}, product) {
+      if (rootGetters['product/productIsInStock'](product)) {
+
         const cartItem = state.cart.find(item => item.id === product.id)
 
         // adds to cart or increment the quantaity of the item on the cart
@@ -46,7 +53,7 @@ export default {
           commit('incrementItemQuantity', cartItem)
         }
         // remove one item of the inventory
-        commit('decrementProductInventory', product)
+        commit('product/decrementProductInventory', product, {root:true})
       }
     },
     checkout ({ state, commit }) {
@@ -60,9 +67,6 @@ export default {
             commit('setCheckoutStatus', 'failed')
           }
       )
-    },
-    setCheckoutStatus (state, status) {
-      state.checkoutStatus = status
     },
   }
 }

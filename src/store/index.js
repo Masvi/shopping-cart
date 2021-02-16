@@ -45,10 +45,9 @@ export default new Vuex.Store({
   },
 
   /**
-   * Actions
+   * Actions - just an example about import actions from another file. shorthand uses
    */
   actions,
-
 
   /**
    * MUTATIONS
@@ -61,7 +60,5 @@ export default new Vuex.Store({
    * if you follow this pattern it is very likely (muito provável) to have less
    * bugs in your code
    */
-  mutations: {
-
-  },
+  mutations: {},
 })
