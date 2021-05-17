@@ -28,5 +28,5 @@ npm run start
 
 ## :books: Documentation
 
-- [vuex](https://vuex.vuejs.org/),
+- [vuex docs](https://vuex.vuejs.org/),
 - [vue scholl](https://vueschool.io/)
