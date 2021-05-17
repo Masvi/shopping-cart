@@ -22,7 +22,7 @@ The project is simple but contains some good practices from `Vuex` and `Vue`.
 npm install
 
 # run application
-npm run start
+npm run serve
 ```
 
 
