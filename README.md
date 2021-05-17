@@ -14,7 +14,7 @@ The project is simple but contains some good practices from `Vuex` and `Vue`.
 - [vue](https://vuejs.org/),
 - [vuex](https://vuex.vuejs.org/)
 
-## :astronaut: Runnig
+## :astronaut: Run
 
 ```bash
 
