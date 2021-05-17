@@ -1,21 +1,32 @@
-# shopping-cart
+# Shopping Cart
 
-> A Vue.js project
+Shopping cart using Vuex.
 
-## Build Setup
+## :pencil: About
+Project that simulates a shopping cart.
+Using state management with `Vuex`.
+The project is simple but contains some good practices from `Vuex` and `Vue`.
 
-``` bash
+## :school_satchel: Requirements
+
+- [node.js 12+](https://nodejs.org/en/),
+- [npm](https://www.npmjs.com/get-npm),
+- [vue](https://vuejs.org/),
+- [vuex](https://vuex.vuejs.org/)
+
+## :astronaut: Runnig
+
+```bash
+
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+# run application
+npm run start
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## :books: Documentation
+
+- [vuex](https://vuex.vuejs.org/),
+- [vue scholl](https://vueschool.io/)
