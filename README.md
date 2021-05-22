@@ -3,9 +3,7 @@
 Shopping cart using Vuex.
 
 ### About 
-This little project simulates a shopping cart.
-The state management with `Vuex`.
- 
+This little project simulates a shopping cart and uses state management with `Vuex`.
 
 It is just a example for study. 🛒:
 
