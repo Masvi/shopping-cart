@@ -7,8 +7,8 @@ Project that simulates a shopping cart.
 Using state management with `Vuex`.
 The project is simple but contains some good practices from `Vuex` and `Vue`.
 
-:school_satchel:
-###  Requirements
+
+:school_satchel: ###  Requirements
 
 - [node.js 12+](https://nodejs.org/en/),
 - [npm](https://www.npmjs.com/get-npm),
