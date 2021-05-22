@@ -2,13 +2,12 @@
 
 Shopping cart using Vuex.
 
-### About :pencil:
+### About 
 This little project simulates a shopping cart.
-
 The state management with `Vuex`.
 The project is simple but contains some good practices from `Vuex` and `Vue`. 
 
-It is just a example for study. :shipit:
+It is just a example for study. 🛒:
 
 
 ### Requirements 
